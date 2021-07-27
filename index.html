@@ -351,13 +351,13 @@
 
       const getPowerChartData = (latestPower) => {
         let d = new Date();
-        let date = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+        let date = ""; // `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
         let latestObj = {
           x: date,
           y: latestPower,
         };
         powerData.push(latestObj);
-        if (powerData.length >= 13) {
+        if (powerData.length > 60) {
           powerData.splice(0, 1);
         }
         return powerData;
@@ -460,7 +460,7 @@
         $("#frequencyValue").text(arr[2][0]);
         $("#pfValue").text(arr[3][0]);
 
-        let pow = parseInt(arr[4][0]);
+        let pow = parseFloat(arr[4][0]);
         pow = pow < 1 ? 0 : pow;
         $("#powerValue").text(pow);
 
@@ -489,7 +489,7 @@
         return 0 + 100 * 3.5 + 300 * 4.6 + (energy - 500) * 6.6;
       };
 
-      setInterval(updateReadings, 5 * 1000);
+      setInterval(updateReadings, 4 * 1000);
       // $(() => updateReadings());
     </script>
 
